@@ -3,12 +3,21 @@ var game_section =  document.querySelector('.game__section');
 
 var global_word_value;
 var counter = 0;
+var correct_letter_counter = 0;
+var global_word_letter_number = 0;
 
 function startGame(){
     var input_word = document.querySelector('#word').value;
     var input_subject = document.querySelector('#subject').value;
 
     global_word_value = input_word.toUpperCase();
+    for(i=0; i<input_word.length; i++){
+        if(input_word[i] == " "){
+            continue;
+        } else {
+            global_word_letter_number ++;
+        }
+    }
 
     if(input_word == ""){
         var input_first_error = document.querySelectorAll('.error')[0];
@@ -41,6 +50,13 @@ function startGame(){
 }
 
 
+var input_letter = document.querySelector("#letter");
+input_letter.addEventListener("keyup", function(KeyboardEvent){
+    if(KeyboardEvent.keyCode === 13){
+        document.querySelectorAll('.submit')[0].click();
+    }
+});
+
 function submitLetter(){
     var letter_value = document.querySelector("#letter").value;
     if(letter_value == ""){
@@ -61,6 +77,12 @@ function submitLetter(){
             letter[i].style.color = 'white';
             document.querySelector("#letter").value = '';
             hasFound = true;
+            correct_letter_counter++;
+        }
+
+        if(correct_letter_counter == global_word_letter_number){
+            var victory = document.querySelector('.victory');
+            victory.innerHTML = "<div>You\'ve won!</div><div><button class='submit' onclick='playAgain()'>Play Again?</button></div>";
         }
     }
 
@@ -72,6 +94,11 @@ function submitLetter(){
         letters_used.innerHTML += letter_value;
         document.querySelector("#letter").value = '';
         if(counter == 6){
+            var letters = document.querySelectorAll('.letters__letter');
+            for(i=0; i<letters.length; i++){
+                letters[i].style.color = 'white';
+            }
+
             var lose = document.querySelector('.lose');
             lose.innerHTML = "<div>You\'ve lost!</div><div><button class='submit' onclick='playAgain()'>Play Again?</button></div>";
         }
@@ -80,6 +107,14 @@ function submitLetter(){
 
     return;
 }
+
+
+var input_word = document.querySelector("#word_final");
+input_word.addEventListener("keyup", function(KeyboardEvent){
+    if(KeyboardEvent.keyCode === 13){
+        document.querySelectorAll('.submit')[1].click();
+    }
+});
 
 function submitWord(){
     var word_value = document.querySelector("#word_final").value;
@@ -102,6 +137,9 @@ function submitWord(){
         var victory = document.querySelector('.victory');
         victory.innerHTML = "<div>You\'ve won!</div><div><button class='submit' onclick='playAgain()'>Play Again?</button></div>";
     } else {
+        var body_part = document.querySelectorAll('.body__part')[counter];
+        body_part.style.display = 'block';
+        counter++;
         document.querySelector("#word_final").value = '';
         return;
     }
