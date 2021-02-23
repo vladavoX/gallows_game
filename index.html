@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallows The Game</title>
+
+    <link rel="icon" type="image/svg" sizes="32x32" href="./images/gallows_icon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="input__section">
+        <div class="input__div">
+            <p class="input__type">WORD</p>
+            <input type="text" name="word" id="word">
+            <div class="error"></div>
+        </div>
+        <div class="input__div">
+            <p class="input__type">SUBJECT</p>
+            <input type="text" name="subject" id="subject">
+            <div class="error"></div>
+        </div>
+        <div><button class="play" onclick="startGame()">Play</button></div>
+    </section>
+
+    <section class="game__section">
+
+        <div class="gallow">
+            <img src="images/gallow.png" alt="" class="gallow__svg">
+            <img src="images/head.png" alt="" class="head__svg body__part">
+            <img src="images/body.png" alt="" class="body__svg body__part">
+            <img src="images/left_hand.png" alt="" class="left-hand__svg body__part">
+            <img src="images/right_hand.png" alt="" class="right-hand__svg body__part">
+            <img src="images/left_foot.png" alt="" class="left-foot__svg body__part">
+            <img src="images/right_foot.png" alt="" class="right-foot__svg body__part">
+        </div>
+
+        <div class="input__word">
+            <div class="letters"></div>
+            <div class="underlines"></div>
+        </div>
+
+        <div class="subject__word"></div>
+
+        <div class="input__letters">LETTER: <input type='text' name='letter' id='letter' maxlength='1'><button class='submit' onclick='submitLetter()'>Submit</button></div>
+        <div class="error"></div>
+
+        <div class="input__final">WORD: <input type='text' name='word_final' id='word_final'><button class='submit' onclick='submitWord()'>Submit</button></div>
+        <div class="error"></div>
+
+        <div class="letters__used"></div>
+
+        <div class="victory"></div>
+
+        <div class="lose"></div>
+
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
